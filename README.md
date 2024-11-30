@@ -1,16 +1,14 @@
-# final_project
+# Dart A Final Project
 
-Dart A Final Project
+## Program Structure
+# dice page
+- create dice object or "create dice" method and add 5 of them to the game UI each with their own logic to roll
+- should be the landing page on app opening
+- method to roll
+- things to include on page: roll button, see score button -> score sheet popup
 
-## Getting Started
+# score sheet
+- a whole new dart file for organization
+- maybe open as a dialog box when each round of dice is rolled
+- method to dynamically calculate score
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
