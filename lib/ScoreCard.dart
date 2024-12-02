@@ -1,32 +1,42 @@
+import 'package:final_project/Score.dart';
 import 'package:flutter/material.dart';
 
 /// This class will keep track of scores and log each chosen score
 /// after each dice roll.
 
-class ScoreCard{
-  /// Upper section of score card
-  late int ace;
-  late int twos;
-  late int threes;
-  late int fours;
-  late int fives;
-  late int sixes;
-  /// Lower section of score card
-  late int nOfAKind_3;
-  late int nOfAKind_4;
-  late int fullHouse;
-  late int smallStraight;
-  late int largeStraight;
-  late int YAHTZEE;
-  late int chance;
-  /// Totals
-  late int upperSectionTotal;
-  late int lowerSectionTotal;
-  late int grandTotal;
+class ScoreCard extends Score{
 
-  
+  /// Map of scores
+  var scores = {
+    'ace' : 0,
+    'twos' : 0,
+    'threes' : 0,
+    'fours' : 0,
+    'fives' : 0,
+    'sixes' : 0,
+    '3ofAKind' : 0,
+    '4ofAKind' : 0,
+    'fullHouse' : 0,
+    'smallStraight' : 0,
+    'largeStraight' : 0,
+    'YAHTZEE' : 0,
+    'chance' : 0,
+    'upperSectionTotal' : 0,
+    'lowerSectionTotal' : 0,
+    'grandTotal' : 0,
+  };
 
+  /// Every time the dice are rolled one of the score card cells are
+  /// filled when the player presses it. To prevent it from being changed
+  /// after the turn is over we will implements buttons for every cell
+  /// that will be disabled after being pressed once.
+  /// ex: onPressed: null
 
+  /// Method for setting scores in map
+  ///
+  void setScore(String category, int score){
+    scores[category] = score;
 
+  }
 
 }

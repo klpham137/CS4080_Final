@@ -10,10 +10,10 @@ class Score{
   List<int> dice = List.filled(5, 0);
   Map<String, int> listOfDuplicates = {};
 
-  /// Constructor for the Category class that creates dice list
+  /// Creates dice list
   /// and sets list of duplicates
   /// Param: list of dice values
-  Score(List<int> diceList){
+  void setLists(List<int> diceList){
     dice = List.from(diceList);
     setDuplicateList();
   }
@@ -29,7 +29,7 @@ class Score{
   /// n of a kind: 3 or more of the same number
   /// Param: num must be 3 or 4
   /// Returns: sum of all dice
-  int nOfAKind(int num){
+  int nOfAKindScore(int num){
     /// check for duplicates of 3
     bool kind_3 = listOfDuplicates.containsValue(3);
     bool kind_4 = listOfDuplicates.containsValue(4);
@@ -46,7 +46,7 @@ class Score{
 
   /// Full House: three of one number and two of another
   /// Return: scores of 0 or 25
-  int fullHouse(){
+  int fullHouseScore(){
     bool kind_3 = listOfDuplicates.containsValue(3);
     bool kind_2 = listOfDuplicates.containsValue(2);
     if(kind_3 && kind_2){
@@ -63,7 +63,7 @@ class Score{
   /// - 2, 3, 4, 5
   /// - 3, 4, 5, 6
   /// Return: scores of 0 or 30
-  int smallStraight(){
+  int smallStraightScore(){
     List<int> sequence1 = [1, 2, 3, 4];
     List<int> sequence2 = [2, 3, 4, 5];
     List<int> sequence3 = [3, 4, 5, 6];
@@ -85,7 +85,7 @@ class Score{
   /// - 1, 2, 3, 4, 5
   /// - 2, 3, 4, 5, 6
   /// Return: scores of 0 or 40
-  int largeStraight(){
+  int largeStraightScore(){
     List<int> sequence1 = [1, 2, 3, 4, 5];
     List<int> sequence2 = [2, 3, 4, 5, 6];
     bool list1 = containsSequence(dice, sequence1);
@@ -105,7 +105,7 @@ class Score{
   /// Additional YAHTZEE is worth 100 points
   /// Param: the number of yahtzees already won by player
   /// Return: scores of 0, 50, 100
-  int YAHTZEE(int yahtzee){
+  int YAHTZEE_Score(int yahtzee){
     bool kind_5 = listOfDuplicates.containsValue(5);
 
     if(kind_5){
@@ -123,7 +123,7 @@ class Score{
 
   /// Chance: any combination of dice
   /// Returns sum total of dice
-  int chance(){
+  int chanceScore(){
     return sumOf(dice);
   }
 
