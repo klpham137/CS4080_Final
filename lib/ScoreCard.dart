@@ -1,11 +1,16 @@
 import 'package:final_project/Score.dart';
 import 'package:flutter/material.dart';
+//
+// /// This class will keep track of scores and log each chosen score
+// /// after each dice roll.
 
-/// This class will keep track of scores and log each chosen score
-/// after each dice roll.
+class Scorecard extends StatefulWidget {
+  @override
+  _ScorecardState createState() => _ScorecardState();
+}
 
-class ScoreCard extends Score{
 
+class _ScorecardState extends State<Scorecard> {
   /// Map of scores
   var scores = {
     'ace' : 0,
@@ -39,4 +44,12 @@ class ScoreCard extends Score{
 
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Scorecard'),
+      ),
+    );
+  }
 }
