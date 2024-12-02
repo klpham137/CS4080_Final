@@ -197,7 +197,7 @@ class _DiceState extends State<Dice> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Scorecard()),
+                      MaterialPageRoute(builder: (context) => Scorecard(diceValues: _diceValues)),
                     );
                   },
                   child: Text('See Scorecard'),

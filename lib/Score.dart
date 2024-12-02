@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 /// depending on the current values of the dice
 /// 1. Set dice values of last roll
 /// 2. Determine all categories of roll
-/// 3. Return all values of vaild categories
+/// 3. Return all values of valid categories
 
 class Score{
   List<int> dice = List.filled(5, 0);
@@ -21,7 +21,10 @@ class Score{
   ///
   /// Returns: score = num * num value from map
   int upperSectionScore(int num){
-    return num * listOfDuplicates["die$num"]!;
+    if (listOfDuplicates["die$num"] != null) {
+      return num * listOfDuplicates["die$num"]!;
+    }
+    return 0;  // Return a safe default if the value is not set
   }
 
   /// Methods for lower section
