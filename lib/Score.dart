@@ -19,11 +19,22 @@ class Score{
   var dice = List.filled(5, 0);
   Map<String, int> listOfDuplicates = {};
 
-  /// Creates dice list
+  /// Constructor that Creates dice list
   /// and sets list of duplicates
   /// Param: list of dice values
-  Score(List<int> diceList){
-    dice = List.from(diceList);
+  Score.uninitializedList({List<int>? initialItems}) : dice = initialItems ?? [];
+
+  /// Constructor that creates dice list
+  /// and sets list of duplicates
+  /// Param: list of dice values
+  Score(List<int> list){
+    dice = List.from(list);
+    _setDuplicateList();
+  }
+
+  /// Method for setting list
+  void setList(List<int> list){
+    dice = List.from(list);
     _setDuplicateList();
   }
 
@@ -90,7 +101,6 @@ class Score{
     else{
       return 0;
     }
-
   }
 
   /// Large Straight: any sequence of 5 numbers (ex: 2,3,4,5,6)

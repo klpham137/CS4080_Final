@@ -33,7 +33,7 @@ class Scorecard extends StatefulWidget {
 
 
 class _ScorecardState extends State<Scorecard> {
-  Score score = Score();
+  Score score = Score.uninitializedList();
   late List<int> currentRoll;
   Map<String, int> scoreMap = {};
   Set<String> lockedScores = {};
@@ -45,7 +45,7 @@ class _ScorecardState extends State<Scorecard> {
     if (currentRoll.length != 5) {
       print("Error: currentRoll list must have exactly 5 elements.");
     }
-    score.setLists(currentRoll);  /// Initialize with the current dice roll
+    score.setList(currentRoll);  /// Initialize with the current dice roll
     scoreMap = _getScoreMap();
   }
 
@@ -63,7 +63,7 @@ class _ScorecardState extends State<Scorecard> {
       "Full House": lockedScores.contains("Full House") ? scoreMap["Full House"] ?? 0 : score.fullHouseScore(),
       "Small Straight": lockedScores.contains("Small Straight") ? scoreMap["Small Straight"] ?? 0 : score.smallStraightScore(),
       "Large Straight": lockedScores.contains("Large Straight") ? scoreMap["Large Straight"] ?? 0 : score.largeStraightScore(),
-      "Yahtzee": lockedScores.contains("Yahtzee") ? scoreMap["Yahtzee"] ?? 0 : score.YAHTZEE_Score(0), // Example without bonus
+      "Yahtzee": lockedScores.contains("Yahtzee") ? scoreMap["Yahtzee"] ?? 0 : score.yahtzeeScore(0), // Example without bonus
       "Chance": lockedScores.contains("Chance") ? scoreMap["Chance"] ?? 0 : score.chanceScore(),
     };
   }
@@ -110,7 +110,7 @@ class _ScorecardState extends State<Scorecard> {
             scoreForCategory = score.largeStraightScore();
             break;
           case "Yahtzee":
-            scoreForCategory = score.YAHTZEE_Score(0);  // Example without bonus
+            scoreForCategory = score.yahtzeeScore(0);  // Example without bonus
             break;
           case "Chance":
             scoreForCategory = score.chanceScore();
