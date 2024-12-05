@@ -1,22 +1,32 @@
-import 'package:flutter/material.dart';
+import 'dart:core';
 
 /// This class has methods for determining available score options
 /// depending on the current values of the dice
 /// 1. Set dice values of last roll
 /// 2. Determine all categories of roll
 /// 3. Return all values of valid categories
+///
+/// METHODS
+/// upperSectionScore(int value)
+/// nOfAKindScore(int value)
+/// fullHouseScore()
+/// smallStraightScore()
+/// largeStraightScore()
+/// yahtzeeScore(int total)
+/// chanceScore()
 
 class Score{
-  List<int> dice = List.filled(5, 0);
+  var dice = List.filled(5, 0);
   Map<String, int> listOfDuplicates = {};
 
   /// Creates dice list
   /// and sets list of duplicates
   /// Param: list of dice values
-  void setLists(List<int> diceList){
+  Score(List<int> diceList){
     dice = List.from(diceList);
-    setDuplicateList();
+    _setDuplicateList();
   }
+
   /// Methods for upper section
   ///
   /// Returns: score = num * num value from map
@@ -37,10 +47,10 @@ class Score{
     bool kind_3 = listOfDuplicates.containsValue(3);
     bool kind_4 = listOfDuplicates.containsValue(4);
     if(num == 3 && (kind_3 || kind_4)){
-      return sumOf(dice);
+      return _sumOf(dice);
     }
     else if(num == 4 && kind_4){
-      return sumOf(dice);
+      return _sumOf(dice);
     }
     else{
       return 0;
@@ -67,12 +77,12 @@ class Score{
   /// - 3, 4, 5, 6
   /// Return: scores of 0 or 30
   int smallStraightScore(){
-    List<int> sequence1 = [1, 2, 3, 4];
-    List<int> sequence2 = [2, 3, 4, 5];
-    List<int> sequence3 = [3, 4, 5, 6];
-    bool list1 = containsSequence(dice, sequence1);
-    bool list2 = containsSequence(dice, sequence2);
-    bool list3 = containsSequence(dice, sequence3);
+    List<int?> sequence1 = [1, 2, 3, 4, null];
+    List<int?> sequence2 = [2, 3, 4, 5, null];
+    List<int?> sequence3 = [3, 4, 5, 6, null];
+    bool list1 = _containsSequence(dice, sequence1);
+    bool list2 = _containsSequence(dice, sequence2);
+    bool list3 = _containsSequence(dice, sequence3);
 
     if(list1 || list2 || list3){
       return 30;
@@ -91,8 +101,8 @@ class Score{
   int largeStraightScore(){
     List<int> sequence1 = [1, 2, 3, 4, 5];
     List<int> sequence2 = [2, 3, 4, 5, 6];
-    bool list1 = containsSequence(dice, sequence1);
-    bool list2 = containsSequence(dice, sequence2);
+    bool list1 = _containsSequence(dice, sequence1);
+    bool list2 = _containsSequence(dice, sequence2);
 
     if(list1 || list2){
       return 40;
@@ -100,7 +110,6 @@ class Score{
     else{
       return 0;
     }
-
   }
 
   /// YAHTZEE: 5 of the same number
@@ -108,7 +117,7 @@ class Score{
   /// Additional YAHTZEE is worth 100 points
   /// Param: the number of yahtzees already won by player
   /// Return: scores of 0, 50, 100
-  int YAHTZEE_Score(int yahtzee){
+  int yahtzeeScore(int yahtzee){
     bool kind_5 = listOfDuplicates.containsValue(5);
 
     if(kind_5){
@@ -127,14 +136,14 @@ class Score{
   /// Chance: any combination of dice
   /// Returns sum total of dice
   int chanceScore(){
-    return sumOf(dice);
+    return _sumOf(dice);
   }
 
   /// Checks for duplicates of a specific num (1-6) in the list, dice
   /// Param: num is a number between (1-6)
   /// Returns: int between (0-6) that represents the amount of times num is
   /// in the list
-  int checkForDuplicatesOf(int num){
+  int _checkForDuplicatesOf(int num){
     /// Checks for num
     bool containsNum = dice.contains(num);
     if(containsNum){
@@ -148,15 +157,15 @@ class Score{
 
   /// This method uses a for loop to check each dice number for duplicates
   /// and add them to the map, listOfDuplicates
-  void setDuplicateList(){
+  void _setDuplicateList(){
     for (var num = 0; num < dice.length; num++) {
-      listOfDuplicates["die$num"] = checkForDuplicatesOf(num);
+      listOfDuplicates["die$num"] = _checkForDuplicatesOf(num);
     }
   }
 
   /// Sum of a list of numbers
   /// Returns: sum
-  int sumOf(List<int> numbers) {
+  int _sumOf(List<int> numbers) {
     int sum = 0;
     for (int number in numbers) {
       sum += number;
@@ -166,7 +175,7 @@ class Score{
 
   /// Method for detecting sequences in a list
   /// Returns: boolean value
-  bool containsSequence(List<int> list, List<int> sequence) {
+  bool _containsSequence(List<int> list, List<int?> sequence) {
     for (int i = 0; i <= list.length - sequence.length; i++) {
       if (list.sublist(i, i + sequence.length).every((element) =>
                                       element == sequence[element - i])) {
@@ -175,5 +184,4 @@ class Score{
     }
     return false;
   }
-
 }
