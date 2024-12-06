@@ -95,9 +95,9 @@ class Score{
   /// - 3, 4, 5, 6
   /// Return: scores of 0 or 30
   int smallStraightScore(){
-    List<int?> sequence1 = [1, 2, 3, 4];
-    List<int?> sequence2 = [2, 3, 4, 5];
-    List<int?> sequence3 = [3, 4, 5, 6];
+    List<int> sequence1 = [1, 2, 3, 4];
+    List<int> sequence2 = [2, 3, 4, 5];
+    List<int> sequence3 = [3, 4, 5, 6];
     bool list1 = _containsSequence(dice, sequence1);
     bool list2 = _containsSequence(dice, sequence2);
     bool list3 = _containsSequence(dice, sequence3);
@@ -133,17 +133,32 @@ class Score{
   /// First YAHTZEE is worth 50 points
   /// Additional YAHTZEE is worth 100 points
   /// Param: the number of yahtzees already won by player
-  /// Return: scores of 0, 50, 100
-  int yahtzeeScore(int yahtzee){
+  /// Return: scores of 0, 50
+  int yahtzeeScore(){
+    bool kind_5 = listOfDuplicates.containsValue(5);
+
+    if(kind_5){
+      return 50;
+    }
+    else{
+      return 0;
+    }
+  }
+
+  /// YAHTZEE: 5 of the same number
+  /// /// First YAHTZEE is worth 50 points
+  /// Additional YAHTZEE is worth 100 points
+  /// Param: the number of yahtzees already won by player
+  /// Return: scores of 100, 200, ...
+  int yahtzeeBonusScore(int yahtzee){
     bool kind_5 = listOfDuplicates.containsValue(5);
 
     if(kind_5){
       if(yahtzee == 0) {
-        return 50;
+        return 0;
       }
       else {
-        int score = 50 + yahtzee * 100;
-        return score;
+        return yahtzee * 100;
       }
     }
     else{
@@ -200,7 +215,7 @@ class Score{
 
   /// Method for detecting sequences in a list
   /// Returns: boolean value
-  bool _containsSequence(List<int> list, List<int?> sequence) {
+  bool _containsSequence(List<int> list, List<int> sequence) {
     bool contains = true;
     for (int i = 0; i < sequence.length; i++) {
       if (list.contains(sequence[i])) {

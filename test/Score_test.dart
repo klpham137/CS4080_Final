@@ -138,18 +138,33 @@ main(){
   test('Testing Yahtzee scores', () {
     var yahtzeeTotal = 2;
 
+    var isYahtzee = [2, 2, 2, 2, 2];
+    var isNOTYahtzee = [2, 1, 2, 2, 2];
+
+    Score score1 = Score(isYahtzee);
+    Score score2 = Score(isNOTYahtzee);
+
+    var yahtzee1 = score1.yahtzeeScore();
+    var yahtzee2 = score2.yahtzeeScore();
+
+    expect(yahtzee1, 50);
+    expect(yahtzee2, 0);
+  });
+
+  test('Testing Yahtzee BONUS scores', () {
+    var yahtzeeTotal = 2;
+
     var testValues1 = [2, 2, 2, 2, 2];
     var testValues2 = [2, 1, 2, 2, 2];
 
     Score testScore1 = Score(testValues1);
     Score testScore2 = Score(testValues2);
 
-    var yahtzee = testScore1.yahtzeeScore(yahtzeeTotal);
-    var yahtzee2 = testScore2.yahtzeeScore(yahtzeeTotal);
+    var yahtzeeBonus1 = testScore1.yahtzeeBonusScore(yahtzeeTotal);
+    var yahtzeeBonus2 = testScore2.yahtzeeBonusScore(yahtzeeTotal);
 
-    expect(yahtzee, 250);
-    expect(yahtzee2, 0);
-
+    expect(yahtzeeBonus1, 200);
+    expect(yahtzeeBonus2, 0);
   });
 
   test('Testing chance scores', () {

@@ -63,7 +63,8 @@ class _ScorecardState extends State<Scorecard> {
       "Full House": lockedScores.contains("Full House") ? scoreMap["Full House"] ?? 0 : score.fullHouseScore(),
       "Small Straight": lockedScores.contains("Small Straight") ? scoreMap["Small Straight"] ?? 0 : score.smallStraightScore(),
       "Large Straight": lockedScores.contains("Large Straight") ? scoreMap["Large Straight"] ?? 0 : score.largeStraightScore(),
-      "Yahtzee": lockedScores.contains("Yahtzee") ? scoreMap["Yahtzee"] ?? 0 : score.yahtzeeScore(0), // Example without bonus
+      "Yahtzee": lockedScores.contains("Yahtzee") ? scoreMap["Yahtzee"] ?? 0 : score.yahtzeeScore(), // Example without bonus
+      "Yahtzee Bonus": lockedScores.contains("Yahtzee Bonus") ? scoreMap["Yahtzee Bonus"] ?? 0 : score.yahtzeeBonusScore(1), // Example without bonus
       "Chance": lockedScores.contains("Chance") ? scoreMap["Chance"] ?? 0 : score.chanceScore(),
     };
   }
@@ -110,7 +111,10 @@ class _ScorecardState extends State<Scorecard> {
             scoreForCategory = score.largeStraightScore();
             break;
           case "Yahtzee":
-            scoreForCategory = score.yahtzeeScore(0);  // Example without bonus
+            scoreForCategory = score.yahtzeeScore();  // Example without bonus
+            break;
+          case "Yahtzee Bonus":
+            scoreForCategory = score.yahtzeeBonusScore(1);  // Example without bonus
             break;
           case "Chance":
             scoreForCategory = score.chanceScore();
