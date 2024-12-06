@@ -19,6 +19,9 @@ class Score{
   var dice = List.filled(5, 0);
   Map<String, int> listOfDuplicates = {};
 
+
+  /// -------------------------CONSTRUCTORS----------------------------
+  ///
   /// Constructor that Creates dice list
   /// and sets list of duplicates
   /// Param: list of dice values
@@ -32,6 +35,9 @@ class Score{
     _setDuplicateList();
   }
 
+
+  /// ---------------------------METHODS-----------------------------
+  ///
   /// Method for setting list
   void setList(List<int> list){
     dice = List.from(list);
@@ -136,7 +142,8 @@ class Score{
         return 50;
       }
       else {
-        return 100;
+        int score = 50 + yahtzee * 100;
+        return score;
       }
     }
     else{
@@ -150,6 +157,9 @@ class Score{
     return _sumOf(dice);
   }
 
+
+  /// -------------------------PRIVATE METHODS---------------------------
+  ///
   /// Checks for duplicates of a specific num (1-6) in the list, dice
   /// Param: num is a number between (1-6)
   /// Returns: int between (0-6) that represents the amount of times num is

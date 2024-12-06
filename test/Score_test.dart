@@ -26,8 +26,6 @@ main(){
     expect(sixes, 12);
   });
 
-
-  /// Testing for 3 of a kind
   test('Testing 3 of a kind scores', () {
     /// Test values
     var testValues1 = [1, 2, 1, 1, 2];
@@ -60,8 +58,7 @@ main(){
     expect(testFunction6, 20);
   });
 
-  /// Testing for 4 of a kind
-  test('Testing n of a kind scores', () {
+  test('Testing 4 of a kind scores', () {
     /// Test values
     var testValues1 = [1, 2, 1, 1, 1];
     var testValues2 = [2, 1, 2, 2, 2];
@@ -108,28 +105,6 @@ main(){
     expect(notFullHouse, 0);
   });
 
-  test('Testing straight scores', () {
-    /// Test values
-    var isASmallStraight = [6, 2, 1, 3, 4];
-    var isALargeStraight = [5, 3, 6, 4, 2];
-    var isNOTAStraight = [6, 2, 6, 1, 2];
-    /// Test score objects
-    Score score1 = Score(isASmallStraight);
-    Score score2 = Score(isALargeStraight);
-    Score score3 = Score(isNOTAStraight);
-    /// Test function calls
-    var smallStraight = score1.smallStraightScore();
-    var largeStraight = score2.largeStraightScore();
-    var notSmallStraight = score3.smallStraightScore();
-    var notLargeStraight = score3.largeStraightScore();
-
-    expect(smallStraight, 30);
-    expect(largeStraight, 40);
-    expect(notSmallStraight, 0);
-    expect(notLargeStraight, 0);
-  });
-
-  /// Testing large and small straight scores SEPARATELY
   test('Testing SMALL straight scores', () {
     /// Test values
     var isASmallStraight = [6, 2, 1, 3, 4];
@@ -145,7 +120,6 @@ main(){
     expect(notSmallStraight, 0);
   });
 
-  /// Testing large and small straight scores SEPARATELY
   test('Testing LARGE straight scores', () {
     /// Test values
     var isALargeStraight = [5, 3, 6, 4, 2];
