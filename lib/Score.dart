@@ -81,6 +81,7 @@ class Score{
     }
   }
 
+  /// THIS METHOD IS NOT WORKING PROPERLY
   /// Small Straight: any sequence of 4 numbers (ex: 2,3,4,5)
   /// list of small straights:
   /// - 1, 2, 3, 4
@@ -88,9 +89,9 @@ class Score{
   /// - 3, 4, 5, 6
   /// Return: scores of 0 or 30
   int smallStraightScore(){
-    List<int?> sequence1 = [1, 2, 3, 4, null];
-    List<int?> sequence2 = [2, 3, 4, 5, null];
-    List<int?> sequence3 = [3, 4, 5, 6, null];
+    List<int?> sequence1 = [1, 2, 3, 4];
+    List<int?> sequence2 = [2, 3, 4, 5];
+    List<int?> sequence3 = [3, 4, 5, 6];
     bool list1 = _containsSequence(dice, sequence1);
     bool list2 = _containsSequence(dice, sequence2);
     bool list3 = _containsSequence(dice, sequence3);
@@ -153,12 +154,16 @@ class Score{
   /// Param: num is a number between (1-6)
   /// Returns: int between (0-6) that represents the amount of times num is
   /// in the list
-  int _checkForDuplicatesOf(int num){
-    /// Checks for num
+  int _checkForInstancesOf(int num){
+    /// Checks if list contains the value num
     bool containsNum = dice.contains(num);
+    /// If list contains the value num
+    ///   -> find the total instances of num
+    /// else
+    ///   -> return 0
     if(containsNum){
-      int duplicates = dice.where((dice) => dice == num).length;
-      return duplicates;
+      int instances = dice.where((dice) => dice == num).length;
+      return instances;
     }
     else {
       return 0;
@@ -168,8 +173,8 @@ class Score{
   /// This method uses a for loop to check each dice number for duplicates
   /// and add them to the map, listOfDuplicates
   void _setDuplicateList(){
-    for (var num = 0; num < dice.length; num++) {
-      listOfDuplicates["die$num"] = _checkForDuplicatesOf(num);
+    for (var num = 0; num <= 6; num++) {
+      listOfDuplicates["die$num"] = _checkForInstancesOf(num);
     }
   }
 
@@ -186,12 +191,16 @@ class Score{
   /// Method for detecting sequences in a list
   /// Returns: boolean value
   bool _containsSequence(List<int> list, List<int?> sequence) {
-    for (int i = 0; i <= list.length - sequence.length; i++) {
-      if (list.sublist(i, i + sequence.length).every((element) =>
-                                      element == sequence[element - i])) {
-        return true;
+    bool contains = true;
+    for (int i = 0; i < sequence.length; i++) {
+      if (list.contains(sequence[i])) {
+        contains = true;
+      }
+      else{
+        contains = false;
+        break;
       }
     }
-    return false;
+    return contains;
   }
 }
