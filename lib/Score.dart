@@ -168,9 +168,7 @@ class Score{
 
   /// Chance: any combination of dice
   /// Returns sum total of dice
-  int chanceScore(){
-    return _sumOf(dice);
-  }
+  int chanceScore() => _sumOf(dice);
 
 
   /// -------------------------PRIVATE METHODS---------------------------
