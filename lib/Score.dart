@@ -95,12 +95,10 @@ class Score{
   /// - 3, 4, 5, 6
   /// Return: scores of 0 or 30
   int smallStraightScore(){
-    List<int> sequence1 = [1, 2, 3, 4];
-    List<int> sequence2 = [2, 3, 4, 5];
-    List<int> sequence3 = [3, 4, 5, 6];
-    bool list1 = _containsSequence(dice, sequence1);
-    bool list2 = _containsSequence(dice, sequence2);
-    bool list3 = _containsSequence(dice, sequence3);
+    List<int> sequence = [1, 2, 3, 4, 5, 6];
+    bool list1 = _containsSequence(dice, sequence.sublist(0, 3));
+    bool list2 = _containsSequence(dice, sequence.sublist(1, 4));
+    bool list3 = _containsSequence(dice, sequence.sublist(2, 5));
 
     if(list1 || list2 || list3){
       return 30;
@@ -116,10 +114,9 @@ class Score{
   /// - 2, 3, 4, 5, 6
   /// Return: scores of 0 or 40
   int largeStraightScore(){
-    List<int> sequence1 = [1, 2, 3, 4, 5];
-    List<int> sequence2 = [2, 3, 4, 5, 6];
-    bool list1 = _containsSequence(dice, sequence1);
-    bool list2 = _containsSequence(dice, sequence2);
+    List<int> sequence = [1, 2, 3, 4, 5, 6];
+    bool list1 = _containsSequence(dice, sequence.sublist(0, 4));
+    bool list2 = _containsSequence(dice, sequence.sublist(5, 4));
 
     if(list1 || list2){
       return 40;
